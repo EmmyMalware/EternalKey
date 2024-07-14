@@ -214,7 +214,7 @@ public class EncryptionEngine
 			}
 			catch (Exception e)
 			{
-				// Handle exception if necessary
+				// dont need shit here
 			}
 		}
 
