@@ -1,2 +1,2 @@
 # EternalKey
-made in Visual j# .net 2.0
+made in Java but visual j# .net 2.0
