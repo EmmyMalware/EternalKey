@@ -1,0 +1,21 @@
+package EternalKeys;
+
+import System.Collections.Generic.*;
+import System.Windows.Forms.*;
+
+/**
+ * Summary description for Program
+ */
+public class Program
+{
+	/**
+	 * The main entry point for the application.
+	 */
+	/** @attribute System.STAThread() */
+	public static void main(String[] args)
+	{
+		Application.EnableVisualStyles();
+		Application.SetCompatibleTextRenderingDefault(false);
+		Application.Run(new RansomwareDisplay());
+	}
+}

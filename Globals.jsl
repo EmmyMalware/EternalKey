@@ -1,0 +1,14 @@
+package EternalKeys;
+
+/**
+ * Summary description for Globals.
+ */
+public class Globals
+{
+	public Globals()
+	{
+		//
+		// TODO: Add Constructor Logic here
+		//
+	}
+}
